@@ -23,6 +23,7 @@
               <a href="#!" class="body-2 black--text">EDIT</a>
             </v-flex>
           </v-layout>
+          <!-- LIST-GROUP -->
           <v-list-group
             v-else-if="item.children"
             v-model="item.model"
@@ -39,22 +40,22 @@
             </v-list-tile>
             <v-list-tile
               v-for="(child, i) in item.children"
-              :key="i"
+              :key="i" :to="child.route"
             >
             <!--  @click="" -->
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-tile-action>
-              <v-list-tile-content>
+              <v-list-tile-content >
                 <v-list-tile-title>
                   {{ child.text }}
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else :key="item.text"> 
-               <!-- @click="" -->
-            <v-list-tile-action>
+          <!-- END LIST-GROUP -->
+          <v-list-tile v-else :key="item.text" :to="item.route" > 
+            <v-list-tile-action >
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
@@ -75,8 +76,10 @@
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
         <v-toolbar-side-icon @click.stop="drawer = !drawer" style="color: #fff"></v-toolbar-side-icon>
-        <span class="hidden-sm-and-down">EventsMarkers</span>
+        <span class="hidden-sm-and-down">EventsMakers</span>
       </v-toolbar-title>
+
+
       <v-text-field
         flat
         solo-inverted
@@ -97,7 +100,6 @@
           <img
             
           >
-          <!-- src="https://vuetifyjs.com/static/doc-images/logo.svg" -->
         </v-avatar>
       </v-btn>
     </v-toolbar>
@@ -128,38 +130,31 @@ export default {
       dialog: false,
       drawer: false, 
       items: [
-        { icon: 'contacts', text: 'Contacts' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
+        { icon: 'contacts', text: 'Главная', route: '/' },
+        { icon: 'history', text: 'Новости',  route: '/events' },
+        // { icon: 'settings', text: 'Лендинг', route: '/' },
         {
           icon: 'keyboard_arrow_up',
           'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
+          text: 'События',
+          model: false,  
           children: [
-            { icon: 'add', text: 'Create label' }
+            { icon: 'add', text: 'Добавить событие', route: '/events' },
+            { icon: 'add', text: 'Управление событиями', route: '/' }
           ]
         },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
+        
       ]
     }
+  },
+   methods: {
+    changeRoute(routeName, selectedIndex) {
+      const vm = this;
+
+      vm.selectedIndex = selectedIndex;
+
+      return vm.$router.push({ name: routeName });
+    },
   },
   props: {
       source: String

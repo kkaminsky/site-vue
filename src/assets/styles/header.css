@@ -23,3 +23,34 @@
 h3.subheading{
     font-size: 2rem !important;
 }
+h1.font-weight-thin{
+    font-weight: 300 !important;
+}
+
+.container.grid-list-md{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.v-list__tile__title{
+    color: #000 !important; 
+}
+.v-list__tile__action, .v-list__tile__action{
+    color: #223642 !important;
+}
+.text-xs-center img{
+    max-width: 100px;
+}
+
+.layout.display-3{
+    font-size: 70px !important;
+}
+
+.afterTag:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    margin-top: 0.8rem !important;
+    border-bottom: 3px solid #223642;
+}
