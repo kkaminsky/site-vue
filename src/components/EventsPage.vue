@@ -65,10 +65,6 @@
         return color;
     }
 
-    // Utilities
-    import {
-        mapState
-    } from 'vuex'
     export default {
         name: 'Feed',
         components: {
@@ -79,15 +75,14 @@
             page: 1
         }),
         computed: {
-            ...mapState(['events']),
 
             pages () {
-                return Math.ceil(this.events.length / 11)
+                return Math.ceil(this.$store.getters.events.length / 11)
             },
             paginatedArticles () {
                 const start = (this.page - 1) * 11
                 const stop = this.page * 11
-                return this.events.slice(start, stop)
+                return this.$store.getters.events.slice(start,stop)
             }
         },
         watch: {

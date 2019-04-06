@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Events from './views/Events.vue'
+import Event from './views/Event.vue'
 
 
 
@@ -21,6 +22,12 @@ const router = new Router({
       name:'events',
       meta: { requiresAuth: true, roles: ['user'] },
       component: Events
+    },
+    {
+      path:'/event',
+      name:'event',
+      meta: { requiresAuth: true, roles: ['user'] },
+      component: Event
     }
   ],
   mode:'history'

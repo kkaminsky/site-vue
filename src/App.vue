@@ -16,3 +16,13 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss">
+  @import "./styles/mixins.scss";
+
+  #app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
+</style>
