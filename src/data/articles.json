@@ -1,85 +1,123 @@
 [
   {
-    "title": "Moroccan Days",
-    "author": "John L",
-    "category": "Travel",
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
     "hero": "moroccandays.jpg"
   },
   {
-    "title": "Swedish Fishing",
-    "author": "Rachel L",
-    "category": "Leisure",
-    "hero": "autumnclouds.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "The Adventure Begins",
-    "hero": "snowcup.jpg",
-    "prominent": true
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Paris in Spring",
-    "author": "John L",
-    "category": "Travel",
-    "hero": "christmas.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Youthful Independence",
-    "author": "Rachel L",
-    "category": "Political",
-    "hero": "july4.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Trial By Fire",
-    "author": "Anthony R",
-    "category": "Cooking",
-    "hero": "firepots.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Water Ventures",
-    "author": "Rachel L",
-    "category": "Leisure",
-    "hero": "jellyfish.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Mt. Zekial",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "mountaincabin.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Cozumel Caves",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "lightcave.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Amazing Ireland",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "greengrass.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "Cabin Fever",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "snowcabin.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   },
   {
-    "title": "To the ancient ruins",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "ruins.jpg"
-  },
-  {
-    "title": "New fashion trends",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "umbrella.jpg"
-  },
-  {
-    "title": "Go on a vacation",
-    "author": "Rachel L",
-    "category": "Travel",
-    "hero": "adventurecave.jpg"
+    "beginingDate": "2019-04-07T20:00:00+00:00Z",
+    "description": "описание студ весна",
+    "endingDate": "2019-04-08T20:00:00+00:00Z",
+    "id": 1,
+    "name": "студ весна",
+    "place": "какой то адрес",
+    "category": "travel",
+    "hero": "moroccandays.jpg"
   }
 ]
+

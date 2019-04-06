@@ -10,7 +10,7 @@
 
             <feed-card
                     v-for="(article, i) in paginatedArticles"
-                    :key="article.title"
+                    :key="article.name"
                     :size="layout[i]"
                     :value="article"
             />
@@ -56,6 +56,15 @@
 </template>
 
 <script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     // Utilities
     import {
         mapState
@@ -66,18 +75,19 @@
             FeedCard: () => import('./FeedCard.vue')
         },
         data: () => ({
-            layout: [2, 2, 1, 2, 2, 3, 3, 3, 3, 3, 3],
+            layout: [1, 2, 2, 1, 2, 2, 3, 3, 3, 2, 2, 2],
             page: 1
         }),
         computed: {
-            ...mapState(['articles']),
+            ...mapState(['events']),
+
             pages () {
-                return Math.ceil(this.articles.length / 11)
+                return Math.ceil(this.events.length / 11)
             },
             paginatedArticles () {
                 const start = (this.page - 1) * 11
                 const stop = this.page * 11
-                return this.articles.slice(start, stop)
+                return this.events.slice(start, stop)
             }
         },
         watch: {

@@ -11,6 +11,8 @@ Vue.use(Vuetify)
 
 Vue.prototype.$http = Axios;
 
+
+
 Vue.config.productionTip = false
 
 new Vue({

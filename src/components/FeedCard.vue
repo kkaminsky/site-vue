@@ -5,7 +5,7 @@
     >
         <base-card
                 :height="value.prominent ? 450 : 350"
-                color="grey lighten-1"
+
                 dark
                 href="#!"
         >
@@ -25,7 +25,7 @@
                         <v-chip
                                 label
                                 class="mx-0 mb-2 text-uppercase"
-                                color="grey darken-3"
+                                :color="value.color"
                                 text-color="white"
                                 small
                                 @click.stop=""
@@ -34,6 +34,8 @@
                         </v-chip>
                         <h3 class="title font-weight-bold mb-2">
                             {{ value.title }}
+                            {{color}}
+
                         </h3>
                         <div class="caption">
                             {{ value.author }}<br>Date
@@ -57,6 +59,20 @@
 </template>
 
 <script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    import {
+        mapGetters,
+        mapMutations
+    } from 'vuex'
+
     export default {
         props: {
             size: {
@@ -69,12 +85,19 @@
             }
         },
         computed: {
+            ...mapGetters(['categories']),
+        colors(){
+            let a ={}
+            this.categories.forEach(i=>a.i=getRandomColor());
+            return a
+        },
             classes () {
                 return {
                     'md6': this.size === 2,
                     'md4': this.size === 3
                 }
             }
+
         }
     }
 </script>
