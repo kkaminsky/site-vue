@@ -3,28 +3,30 @@
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex >
-
-                        <v-layout row>
-{{eventName}}
-                            {{eventDescription}}
+                        <v-layout row>                     
                             <v-flex md6>
-                                <v-img src="https://picsum.photos/510/300?random" aspect-ratio="1.7"></v-img>
+                                <v-img src="https://picsum.photos/510/300?random" aspect-ratio="1.7" style="min-width:300px;"></v-img>
                             </v-flex>
+                             
                             <v-flex md3>
+                                
                                 <v-flex >
-                                    <widget icon="domain" title="1,287,687" subTitle= '13% higher yesterday' supTitle="Today's Visits" color="#00b297"/>
+                                    <widget icon="domain" subTitle="Место проведения" :title= 'eventPlace' color="#00b297"/>
                                 </v-flex>
-                                <v-flex >
-                                    <widget icon="money_off" title="$141,291" subTitle= '$117,212 before tax' supTitle="Today's Sales" color="#dc3545"/>
+                                 <v-flex>
+                                    <widget icon="watch_later" subTitle="Время начала" :title='eventBeginDate' color="#1D2939"/>
                                 </v-flex>
+                                
                             </v-flex>
-                            <v-flex md3>
+                            <v-flex md3 >
+                                
                                 <v-flex >
-                                    <widget icon="computer" title="33.45%" subTitle= '13% average duration' supTitle="% Unique Visits" color="#0866C6"/>
+                                    <widget icon="computer" :title='eventName' subTitle= 'Название' color="#0866C6"/>
                                 </v-flex>
-                                <v-flex>
-                                    <widget icon="watch_later" title="13.00%" subTitle= '17.25% on average time' supTitle="Bounce Rate" color="#1D2939"/>
+                                <v-flex >
+                                    <widget icon="money_off" :title='eventDescription' subTitle= 'Описание' color="#dc3545"/>
                                 </v-flex>
+                               
                             </v-flex>
 
 
@@ -71,7 +73,9 @@
                 mySuperCard:[],
                 visibleCards:[],
                 eventName:"",
-                eventDescription:""
+                eventDescription:"",
+                eventBeginDate:"",
+                eventPlace:""
                     /*[
                     {
                         card:"1",
@@ -129,8 +133,9 @@
                 response=>{
                     this.eventDescription = response.data.event.description
                     this.eventName = response.data.event.name
+                    this.eventBeginDate = response.data.event.beginingDate
+                    this.eventPlace = response.data.event.place
                 }
-
             )
 
             this.$http.get("/dimas/api/v1.0/events/".concat(a.path.split('/')[2]).concat("/students"), { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(

@@ -39,6 +39,12 @@
                     data-vv-name="surname"
                     required
                     ></v-textarea>
+
+                    <v-textarea
+                    label="VK ID"
+                    data-vv-name="surname"
+                    required
+                    ></v-textarea>
                     
                     <v-btn @click="submit">Сохранить</v-btn>
 

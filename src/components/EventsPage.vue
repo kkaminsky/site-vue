@@ -36,7 +36,7 @@
                     text-xs-center
                     subheading
             >
-                PAGE {{ page }} OF {{ pages }}
+                Стр. {{ page }} / {{ pages }}
             </v-flex>
 
             <v-flex
