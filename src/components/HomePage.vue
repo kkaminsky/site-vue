@@ -62,7 +62,7 @@
                         <div>
                             <h3 class="headline mb-2">{{ card.header }}</h3>
                             <div class="w-80 card-text"> {{ card.text }} </div>
-                            <v-btn ml-0 outline color="indigo">Подробнее</v-btn>
+                            <v-btn ml-0 outline color="indigo" to='/events'>Подробнее</v-btn>
                         </div>
                         </v-card-title>
                     </v-flex>
@@ -74,7 +74,7 @@
                         <div>
                             <h3 class="headline mb-2">{{ card.header }}</h3>
                             <div class="w-80 card-text"> {{ card.text }} </div>
-                            <v-btn ml-0 outline color="indigo">Подробнее</v-btn>
+                            <v-btn ml-0 outline color="indigo" to='/events'>Подробнее</v-btn>
                         </div>
                         </v-card-title>
             
@@ -132,7 +132,7 @@
       <h2 class="text-xs-center display-1 mb-2 afterTag">Проявите себя</h2>
       <v-flex class="text-xs-center headline">
             <p>Зарегистрируйтесь на нашем сервисе, получите список релевантных вам мероприятий, <br /> а также возможность найти новых друзей</p>
-            <v-btn ml-0 mt-0 outline color="indigo">Зарегистрироваться</v-btn>
+            <v-btn ml-0 mt-0 outline color="indigo" to='/register'>Зарегистрироваться</v-btn>
       </v-flex>
     </v-container>
 
