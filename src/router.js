@@ -24,6 +24,12 @@ const router = new Router({
       component: Events
     },
     {
+      path:'/events/:id',
+      name:'event',
+      meta: { requiresAuth: true, roles: ['user'] },
+      component: Event
+    },
+    {
       path:'/event',
       name:'event',
       meta: { requiresAuth: true, roles: ['user'] },

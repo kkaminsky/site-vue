@@ -10,9 +10,11 @@
 
             <feed-card
                     v-for="(article, i) in paginatedArticles"
-                    :key="article.name"
+                    :key="article.id"
                     :size="layout[i]"
                     :value="article"
+
+
             />
         </v-layout>
 
@@ -72,8 +74,17 @@
         },
         data: () => ({
             layout: [1, 2, 2, 1, 2, 2, 3, 3, 3, 2, 2, 2],
-            page: 1
+            page: 1,
+            events: []
         }),
+        created:function (){
+            this.$http.get("/dimas/api/v1.0/events", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                response=>{
+                    console.log(response.data.events)
+                    this.events = response.data.events
+                }
+            )
+        },
         computed: {
 
             pages () {
@@ -82,7 +93,8 @@
             paginatedArticles () {
                 const start = (this.page - 1) * 11
                 const stop = this.page * 11
-                return this.$store.getters.events.slice(start,stop)
+
+                return this.events.slice(start,stop)
             }
         },
         watch: {

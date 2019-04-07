@@ -50,9 +50,12 @@ export default new Vuex.Store({
   mutations: {
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer),
-    setEvents: (state,newValue) => (state.events =newValue)
+    SET_EVENTS: (state,newValue) => (state.events =newValue)
   },
   actions: {
+    setEvents({commit},events){
 
+      commit('SET_EVENTS',events)
+    }
   }
 })
