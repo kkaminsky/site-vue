@@ -145,8 +145,8 @@ export default {
           text: 'События',
           model: false,  
           children: [
-            { icon: 'event_available', text: 'Добавить событие', route: '/events' },
-            { icon: 'event_note', text: 'Управление событиями', route: '/' }
+            { icon: 'event_available', text: 'Добавить событие', route: '/event' },
+            { icon: 'event_note', text: 'Управление событиями', route: '/events' }
           ]
         },
         
