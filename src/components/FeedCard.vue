@@ -9,7 +9,7 @@
             :href="href"
     >
         <v-img
-                :src="require(`@/assets/articles/${value.hero}`)"
+                :src="require(`@/assets/articles/${value.id}`.concat('.jpg'))"
                 height="100%"
                 gradient="rgba(0, 0, 0, .42), rgba(0, 0, 0, .42)"
         >
@@ -21,23 +21,23 @@
                     ma-0
             >
                 <v-flex xs12>
-                    <v-chip
+                    <v-chip  v-for="cat in value.categories"
                             label
                             class="mx-0 mb-2 text-uppercase"
-                            :color="value.color"
+                            :color="cat.color"
                             text-color="white"
                             small
                             @click.stop=""
                     >
-                        {{ value.category }}
+                        {{cat.name}}
                     </v-chip>
                     <h3 class="title font-weight-bold mb-2">
-                        {{ value.title }}
-                        {{color}}
+                        {{ value.name }}
+
 
                     </h3>
                     <div class="caption">
-                        {{ value.author }}<br>Date
+                        {{ value.beginingDate }}
                     </div>
                 </v-flex>
                 <v-flex align-self-end>
@@ -90,12 +90,6 @@
             href(){
               return "/events/".concat(this.value.id)
             },
-            ...mapGetters(['categories']),
-        colors(){
-            let a ={}
-            this.categories.forEach(i=>a.i=getRandomColor());
-            return a
-        },
             classes () {
                 return {
                     'md6': this.size === 2,
