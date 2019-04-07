@@ -4,8 +4,8 @@
             <v-layout row wrap>
                 <v-flex >
                         <v-layout row>                     
-                            <v-flex md6>
-                                <v-img src="https://picsum.photos/510/300?random" aspect-ratio="1.7" style="min-width:300px;"></v-img>
+                            <v-flex  md6>
+                                <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; border: 14px solid #223642"  ></v-img>
                             </v-flex>
                              
                             <v-flex md3>
@@ -33,11 +33,19 @@
                         </v-layout>
                         <v-layout row >
 
+                            <v-flex >
+                                <h2 class="display-2">Участники</h2>
 
+                            </v-flex>
                         </v-layout>
 
                 </v-flex>
-                <v-flex offset-md3>
+                <v-flex>
+                    <v-icon>keyboard_arrow_left</v-icon>
+                    <p>Не хочу</p>
+
+                </v-flex>
+                <v-flex class="flex-settings">
                     <GameCardsStack
                             :cards="visibleCards"
                             @cardAccepted="handleCardAccepted"
@@ -45,6 +53,11 @@
                             @cardSkipped="handleCardSkipped"
                             @hideCard="removeCardFromDeck"
                     />
+                </v-flex>
+                <v-flex>
+
+                    <v-icon>keyboard_arrow_right</v-icon>
+                    <p>Хочу пойти</p>
                 </v-flex>
             </v-layout>
         </v-container>
