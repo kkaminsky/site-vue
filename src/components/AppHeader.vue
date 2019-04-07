@@ -80,7 +80,7 @@
       </v-toolbar-title>
 
 
-      <v-text-field
+      <v-text-field v-if="this.$route.name == 'events'"
         flat
         solo-inverted
         prepend-icon="search"
@@ -88,6 +88,11 @@
         class="hidden-sm-and-down"
         backgroundColor="#fafafa"
       ></v-text-field>
+      <v-toolbar-items class="hidden-sm-and-down" v-else>
+        <!-- <v-btn flat to="#test">Link One</v-btn>
+        <v-btn flat>Link Two</v-btn>
+        <v-btn flat>Link Three</v-btn> -->
+      </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-btn icon style="color: #fff">
         <v-icon>apps</v-icon>
@@ -95,13 +100,13 @@
       <v-btn icon style="color: #fff">
         <v-icon>notifications</v-icon>
       </v-btn>
-      <v-btn icon large style="color: #fff">
+      <!-- <v-btn icon large style="color: #fff">
         <v-avatar size="32px" tile>
           <img
             
           >
         </v-avatar>
-      </v-btn>
+      </v-btn> -->
     </v-toolbar>
     
     <v-dialog v-model="dialog" width="800px">

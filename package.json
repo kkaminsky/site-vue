@@ -10,8 +10,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
+    "pie-chart": "0.0.1",
+    "piechart": "^1.0.0",
     "vee-validate": "^2.2.0",
     "vue": "^2.6.6",
+    "vue-pie-chart": "^1.1.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.9",
     "vuex": "^3.0.1"

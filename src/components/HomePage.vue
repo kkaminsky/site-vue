@@ -92,7 +92,7 @@
         </v-flex>
     </v-container>
 
-     <v-container grid-list-md>
+     <v-container grid-list-md id="test">
         <h2 class="text-xs-center display-1 mb-2 afterTag">Найдите себе компанию</h2>
         <v-flex class="d-flex text-xs-center headline">
                 <p>После выбора мероприятия мы предложим вам список людей, интересы которых схожи с вашими, <br /> которые тоже идут на данное событие и ищут компанию</p>
@@ -131,8 +131,8 @@
     <v-container>
       <h2 class="text-xs-center display-1 mb-2 afterTag">Проявите себя</h2>
       <v-flex class="text-xs-center headline">
-            <p>Зарегистрируйтесь на нашем сервисе, получите список ревелантных вам мерпориятий, <br /> а также возможность найти новых друзей</p>
-            <v-btn ml-0 mt-0 outline color="indigo">Зарегистироваться</v-btn>
+            <p>Зарегистрируйтесь на нашем сервисе, получите список релевантных вам мероприятий, <br /> а также возможность найти новых друзей</p>
+            <v-btn ml-0 mt-0 outline color="indigo">Зарегистрироваться</v-btn>
       </v-flex>
     </v-container>
 
@@ -141,11 +141,8 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-// import VeeValidate from 'vee-validate'
 import Parallax from '../components/Parallax.vue'
 import Footer from '../components/Footer.vue'
-
 
 export default {
     data(){
