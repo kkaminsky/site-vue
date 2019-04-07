@@ -1,0 +1,148 @@
+.nav-main{
+    background: #223642 !important;
+    color: #fff !important
+}
+.hidden-sm-and-down .v-icon {
+    color: white !important;
+}
+.v-text-field__slot input{
+    color: #000 !important;
+}
+.application--wrap {
+    min-height: 0 !important;
+}
+.v-parallax__content{
+    padding: unset !important;
+}
+
+.v-parallax__content .layout{
+ 
+    background: #000;
+    opacity: 0.7;
+}
+
+h3.subheading{
+    font-size: 2rem !important;
+}
+
+.v-card__title h3.headline{
+    font-size: 2.2rem !important;
+}
+
+.v-card__title .card-text{
+    font-size: 1.15rem !important;
+}
+
+
+
+
+h1.font-weight-thin{
+    font-weight: 300 !important;
+}
+
+.container.grid-list-md{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.v-list__tile__title{
+    color: #000 !important; 
+}
+.v-list__tile__action, .v-list__tile__action{
+    color: #223642 !important;
+}
+.text-xs-center img{
+    max-width: 100px;
+}
+
+.layout.display-3{
+    font-size: 70px !important;
+}
+
+.afterTag:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    margin-top: 0.8rem !important;
+    border-bottom: 3px solid #223642;
+}
+
+.text-xs-center.display-1{
+    font-size: 34px !important;
+}
+
+.card-text.display-1{
+    font-weight: 500;
+    font-size: 25px !important;
+}
+
+.text-xs-center p{
+    font-size: 16px !important;
+}
+.v-card{
+    padding: 25px;
+    background: unset !important;
+    box-shadow: unset !important;
+}
+
+.v-card.theme--light.v-sheet{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.flex.primary.lighten-2 {
+    background-color: #223642 !important;
+    border-color: #223642 !important;
+}
+.v-btn.indigo--text {
+    background: unset !important;
+    background-color: #223642 !important;
+    color: #223642 !important;
+    caret-color: #223642 !important;
+    margin-left: 0 !important;
+}
+
+.v-image .v-responsive__sizer{
+    padding-bottom : 57.3636% !important;   
+}
+
+.flex-direction-column{
+    flex-direction: column !important;
+}
+
+.v-responsive .v-responsive__content{
+    align-items: center !important;
+    display: flex;
+}
+
+.flex-settings{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.w-50{
+    width: 50%;
+}
+form {
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.v-label.primary--text, div.primary--text{
+    color: #223642 !important;
+    caret-color: #223642 !important;
+}
+
+footer .grey.darken-3{
+    background-color: #223642!important;
+    border-color: #223642!important;
+}
+
+.blue.darken-4{
+    background-color: #223642!important;
+    border-color: #223642!important;
+}
