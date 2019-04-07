@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <home-page></home-page>
-    </div>
+    <event-page></event-page>
 </template>
 
 <script>
-    import HomePage from '../components/HomePage'
+    import EventPage from '../components/EventPage'
 
     export default {
         components:{
-            HomePage
+            EventPage
         }
     }
 </script>

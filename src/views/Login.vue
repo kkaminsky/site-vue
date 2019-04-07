@@ -1,15 +1,15 @@
 <template>
     <div>
-        <home-page></home-page>
+        <login-page></login-page>
     </div>
 </template>
 
 <script>
-    import HomePage from '../components/HomePage'
+    import LoginPage from '../components/LoginPage'
 
     export default {
         components:{
-            HomePage
+            LoginPage
         }
     }
 </script>
