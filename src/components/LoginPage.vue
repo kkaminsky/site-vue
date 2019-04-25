@@ -33,7 +33,7 @@
                         required
                         ></v-text-field>
                         <v-layout justify-space-between>
-                            <v-btn :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Войти</v-btn>
+                            <v-btn @click="login" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Войти</v-btn>
                         </v-layout>
                     </v-form>
                 </div>
@@ -59,16 +59,18 @@
         },
         methods: {
           login () {
-            const{email, password} = this
-            // data = {
-            //     "email" : email,
-            //     "password" : password
-            // }
-            // this.$http.post("/dimas/api/v1.0/users/login", data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
-            //     response=>{              
-            //         console.log(response.data);
-            //     }
-            // )
+
+
+             let data = {
+                "email" : this.email,
+                "password" : this.password
+             }
+             this.$http.post("/dimas/api/v1.0/users/login", data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                 response=>{
+                     localStorage.setItem("user",response.data.user.id)
+                     this.$router.push('/');
+                }
+             )
           }
         },
         name: "LoginPage",

@@ -13,8 +13,6 @@
                     :key="article.id"
                     :size="layout[i]"
                     :value="article"
-
-
             />
         </v-layout>
 

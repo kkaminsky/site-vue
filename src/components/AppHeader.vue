@@ -136,7 +136,7 @@ export default {
       drawer: false, 
       items: [
         { icon: 'home', text: 'Главная', route: '/' },
-        { icon: 'history', text: 'Новости',  route: '/events' },
+
         { icon: 'arrow_forward', text: 'Авторизация', route: '/login' },
         { icon: 'group_add', text: 'Регистрация', route: '/register' },
         {
@@ -145,8 +145,9 @@ export default {
           text: 'События',
           model: false,  
           children: [
-            { icon: 'event_available', text: 'Добавить событие', route: '/event' },
-            { icon: 'event_note', text: 'Управление событиями', route: '/events' }
+            { icon: 'event_available', text: 'Добавить событие', route: '/events' },
+            { icon: 'event_note', text: 'Управление событиями', route: '/' },
+            { icon: 'history', text: 'Все собятия',  route: '/events' }
           ]
         },
         

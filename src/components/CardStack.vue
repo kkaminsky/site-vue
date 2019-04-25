@@ -8,8 +8,8 @@
                 :card="card"
                 img="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
                 :is-current="index === 0"
-                @cardAccepted="$emit('cardAccepted');"
-                @cardRejected="$emit('cardRejected');"
+                @cardAccepted="$emit('cardAccepted',card);"
+                @cardRejected="$emit('cardRejected',card);"
                 @cardSkipped="$emit('cardSkipped');"
                 @hideCard="$emit('hideCard');"
         />
