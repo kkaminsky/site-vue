@@ -8,7 +8,11 @@
 <template>
     <v-container fluid fill-height class="loginOverlay">
         <v-layout flex align-center justify-center>
+
             <v-flex xs12 sm4 elevation-6>
+                <v-flex><v-btn @click="loginVk">
+                    vk login
+                </v-btn></v-flex>
             <v-toolbar class="pt-2 blue darken-4">
                 <v-toolbar-title class="white--text"><h4>Авторизация</h4></v-toolbar-title>
             </v-toolbar>
@@ -45,6 +49,7 @@
 </template>
 
 <script>
+    import VK from "vk-io"
     export default {
         data () {
           return {
@@ -58,6 +63,32 @@
           }
         },
         methods: {
+            loginVk(){
+                const vk = new VK();
+
+                vk.setOptions({
+                    appId: process.env.APP_ID,
+                    appSecret: process.env.APP_SECRET,
+
+                    login: process.env.LOGIN,
+                    password: process.env.PASSORD
+                });
+
+                const direct = vk.direct();
+
+                direct.run()
+                    .then((response) => {
+                        console.log('Token:', response.token);
+                        console.log('Expires:', response.expires);
+
+                        console.log('Email:', response.email);
+                        console.log('User ID:', response.user);
+                    });
+
+
+
+                //vk.api("user")
+            },
           login () {
 
 
