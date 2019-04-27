@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/vue-fontawesome": "^0.1.6",
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "interact.js": "^1.2.8",
-    "node-sass": "^4.11.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
     "pie-chart": "0.0.1",
     "piechart": "^1.0.0",
     "sass-loader": "^7.1.0",
@@ -19,6 +21,7 @@
     "vk-io": "^4.0.0-rc.17",
     "vk-openapi": "^0.1.2",
     "vue": "^2.6.6",
+    "vue-moment": "^4.0.0",
     "vue-pie-chart": "^1.1.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.9",

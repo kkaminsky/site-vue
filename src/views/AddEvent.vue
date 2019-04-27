@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <cabinet></cabinet>
-    </div>
+    <add-event-page></add-event-page>
 </template>
 
 <script>
-    import Cabinet from '../components/Cabinet'
+    import AddEventPage from '../components/AddEventPage'
 
     export default {
         components:{
-            Cabinet
+            AddEventPage
         }
     }
 </script>

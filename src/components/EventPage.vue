@@ -3,41 +3,39 @@
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex >
-                        <v-layout row>                     
-                            <v-flex  md6>
-                                <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; border: 14px solid #223642"  ></v-img>
-                            </v-flex>
-                             
-                            <v-flex md3>
-                                
-                                <v-flex >
-                                    <widget icon="domain" subTitle="Место проведения" :title= 'eventPlace' color="#00b297"/>
-                                </v-flex>
-                                 <v-flex>
-                                    <widget icon="watch_later" subTitle="Время начала" :title='eventBeginDate' color="#1D2939"/>
-                                </v-flex>
-                                
-                            </v-flex>
-                            <v-flex md3 >
-                                
-                                <v-flex >
-                                    <widget icon="computer" :title='eventName' subTitle= 'Название' color="#0866C6"/>
-                                </v-flex>
-                                <v-flex >
-                                    <widget icon="money_off" :title='eventDescription' subTitle= 'Описание' color="#dc3545"/>
-                                </v-flex>
-                               
-                            </v-flex>
-
-
-                        </v-layout>
-                        <v-layout row >
-
+                    <v-layout row>                     
+                        <v-flex  md6>
+                            <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; border: 14px solid #223642"  ></v-img>
+                        </v-flex>
+                            
+                        <v-flex md3>
+                            
                             <v-flex >
-                                <h2 class="display-2">Участники</h2>
-
+                                <widget icon="domain" subTitle="Место проведения" :title= 'eventPlace' color="#00b297"/>
                             </v-flex>
-                        </v-layout>
+                                <v-flex>
+                                <widget icon="watch_later" subTitle="Время начала" :title='eventBeginDate' color="#1D2939"/>
+                            </v-flex>
+                            
+                        </v-flex>
+                        <v-flex md3 >
+                            
+                            <v-flex >
+                                <widget icon="computer" :title='eventName' subTitle= 'Название' color="#0866C6"/>
+                            </v-flex>
+                            <v-flex >
+                                <widget icon="money_off" :title='eventDescription' subTitle= 'Описание' color="#dc3545"/>
+                            </v-flex>
+                            
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row >
+
+                        <v-flex >
+                            <h2 class="display-2">Участники</h2>
+
+                        </v-flex>
+                    </v-layout>
 
                 </v-flex>
                 <v-flex>
@@ -80,60 +78,11 @@
 
         data() {
             return {
-
                 visibleCards:[],
                 eventName:"",
                 eventDescription:"",
                 eventBeginDate:"",
                 eventPlace:""
-                    /*[
-                    {
-                        card:"1",
-                        user:{
-                    jobTitle: 'Web Developer1',
-                    name: 'Michael Wang',
-                    color: '#ba234b',
-                    dark: true,
-                    avatar: {
-                        src: 'https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat4&accessoriesType=Prescription01&hatColor=Black&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=Black&graphicType=Selena&eyeType=Squint&eyebrowType=AngryNatural&mouthType=Default&skinColor=DarkBrown',
-                        size: '36'
-                    }
-                },
-                }
-                , {card:"2",
-                        user:{
-                            jobTitle: 'Web Developer2',
-                            name: 'Michael Wang',
-                            color: '#ba234b',
-                            dark: true,
-                            avatar: {
-                                src: 'https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat4&accessoriesType=Prescription01&hatColor=Black&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=Black&graphicType=Selena&eyeType=Squint&eyebrowType=AngryNatural&mouthType=Default&skinColor=DarkBrown',
-                                size: '36'
-                            }
-                        },
-                    }, {card:"3",
-                        user:{
-                            jobTitle: 'Web Developer3',
-                            name: 'Michael Wang',
-                            color: '#ba234b',
-                            dark: true,
-                            avatar: {
-                                src: 'https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat4&accessoriesType=Prescription01&hatColor=Black&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=Black&graphicType=Selena&eyeType=Squint&eyebrowType=AngryNatural&mouthType=Default&skinColor=DarkBrown',
-                                size: '36'
-                            }
-                        },
-                    },{card:"2",
-                        user:{
-                            jobTitle: 'Web Developer',
-                            name: 'Michael Wang',
-                            color: '#ba234b',
-                            dark: true,
-                            avatar: {
-                                src: 'https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat4&accessoriesType=Prescription01&hatColor=Black&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=Black&graphicType=Selena&eyeType=Squint&eyebrowType=AngryNatural&mouthType=Default&skinColor=DarkBrown',
-                                size: '36'
-                            }
-                        },
-                    },"dfgfdsf"]*/
             }
         },
         created:function () {
