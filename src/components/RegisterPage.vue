@@ -20,6 +20,11 @@
                 <div>
                     <v-form v-model="valid" ref="form" @submit.prevent="register" class="bg-gray">
                         <v-text-field
+                        label="Ваше имя"
+                        v-model="name"
+                        required
+                        ></v-text-field>
+                        <v-text-field
                         label="Введите e-mail"
                         v-model="email"
                         required
@@ -78,6 +83,7 @@
           register () {
             let self = this;
             let data = {
+                "name" : this.name,
                 "email" : this.email,
                 "password" : this.password
             }
