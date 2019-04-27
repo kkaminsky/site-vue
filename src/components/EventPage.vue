@@ -1,38 +1,44 @@
 <template>
     <div >
+        <v-parallax :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))"></v-parallax>
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex >
                     <v-layout row>                     
-                        <v-flex  md6>
-                            <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; border: 14px solid #223642"  ></v-img>
+                        <v-flex md6>
+                            <!-- <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; height:100%;"  ></v-img> -->
                         </v-flex>
-                            
-                        <v-flex md3>
-                            
-                            <v-flex >
-                                <widget icon="domain" subTitle="Место проведения" :title= 'eventPlace' color="#00b297"/>
+                        <v-flex md6 flex align-center justify-center >
+                            <v-flex xs12 class="bg-white border-gray pa-0" style="height:100%" >
+                            <v-card style="height:100%">
+                                <v-card-text class="pt-4">
+                                <div>
+                                    <h2 class="profile-header text-left mb-2" style="font-size:2rem">{{eventName}}</h2>
+                                    <h4 class="profile-subhead text-left">{{eventDescription}}</h4>
+                                    <hr class="my-3 hr-profile">
+                                    <p class="text-left"><span class="gray-text">Место проведения:</span> {{eventPlaceResponce}}</p> 
+                                    <p class="text-left"><span class="gray-text">Время начала:</span> {{eventBeginDate}} </p>
+                                    <v-chip  v-for="cat in eventCategories"
+                                        label
+                                        class="mx-1 mb-2 text-uppercase"
+                                        :color="cat.color"
+                                        text-color="white"
+                                        small
+                                        :key="cat.id"
+                                    >
+                                        {{cat.name}}
+                                    </v-chip>
+                                    
+                                </div>
+                                </v-card-text>
+                            </v-card>
                             </v-flex>
-                                <v-flex>
-                                <widget icon="watch_later" subTitle="Время начала" :title='eventBeginDate' color="#1D2939"/>
-                            </v-flex>
-                            
-                        </v-flex>
-                        <v-flex md3 >
-                            
-                            <v-flex >
-                                <widget icon="computer" :title='eventName' subTitle= 'Название' color="#0866C6"/>
-                            </v-flex>
-                            <v-flex >
-                                <widget icon="money_off" :title='eventDescription' subTitle= 'Описание' color="#dc3545"/>
-                            </v-flex>
-                            
                         </v-flex>
                     </v-layout>
                     <v-layout row >
 
                         <v-flex >
-                            <h2 class="display-2">Участники</h2>
+                            <h2 class="display-2 mt-5">Участники</h2>
                             <v-btn @click="change"></v-btn>
 
                         </v-flex>
@@ -40,9 +46,8 @@
                     </v-layout>
 
                 </v-flex>
-
-
-                <v-flex v-show="flag" class="flex-settings">
+            </v-layout>
+                <v-flex v-show="flag">
                     <div>
 
                         <!--<div class="controls">
@@ -66,11 +71,11 @@
                         <button @click="next" class="button"><i class="next"></i><span class="text-hidden">next</span></button>
                     </div>
                 </v-flex>
-
-            </v-layout>
+            
+            
             <v-container fluid>
                 <v-layout wrap>
-                    <v-flex  v-for="user in compArrSomeLis" md4>
+                    <v-flex v-for="user in compArrSomeLis" md4>
                         <v-card  color="white">
                             <v-avatar size="120px">
                                 <img :src="user.img">
@@ -97,7 +102,8 @@
 </template>
 
 <script>
-    import GameCardsStack from "../components/CardStack";
+    import Parallax from '../components/Parallax.vue'
+    import GameCardsStack from "../components/CardStack"
     import Widget from "../components/Widget"
     import Stack from "../components/stack"
     import Card from "./Card";
@@ -128,10 +134,13 @@
                         size: '36'
                     }
                 }],
-                eventName:"",
+                eventName:"",   
                 eventDescription:"",
                 eventBeginDate:"",
                 eventPlace:"",
+                eventCategories: [],
+                str: "",
+                eventPlaceResponce:"",
                 someList:[],
                 stackinit: {
                     visible: 4
@@ -165,22 +174,30 @@
         methods: {
             load(){
                 let a = this.$router.currentRoute
-                console.log(a.path.split('/')[1])
+               // console.log(a.path.split('/')[1])
                 this.$http.get("/dimas/api/v1.0/events/".concat(a.path.split('/')[2]), { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
                     response=>{
                         this.eventDescription = response.data.event.description
                         this.eventName = response.data.event.name
-                        this.eventBeginDate = response.data.event.beginingDate
-                        this.eventPlace = response.data.event.place
+                        this.eventBeginDate = response.data.event.beginingDate //place_id
+                        this.eventPlace = response.data.event.place_id
+                        this.eventCategories = response.data.event.categories
+                        this.$http.get("/dimas/api/v1.0/places/" + response.data.event.place_id, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                            response=>{
+                                this.eventPlaceResponce = response.data.place.name
+                            }
+                        )
                     }
                 )
+                
+               
                 let data = {
                     "user_from_id":localStorage.getItem("user")
                 }
-                console.log(data)
+                //console.log(data)
                 this.$http.post("/dimas/api/v1.0/events/".concat(a.path.split('/')[2]).concat("/students"),data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" }}).then(
                     response=>{
-                        console.log(response)
+                       // console.log(response)
                         let  users = [
                             {
                                 jobTitle: 'Web Developer',
@@ -243,7 +260,7 @@
                             a.name = response.data.users[i].name
                             a.text = response.data.users[i].info
                             a.id = response.data.users[i].id
-                            console.log(a)
+                            //console.log(a)
                             this.someList.push(a)
                         }
                     }
