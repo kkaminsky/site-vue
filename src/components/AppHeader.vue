@@ -64,7 +64,7 @@ export default {
       dialog: false,
       drawer: false, 
       items: [
-        { icon: 'home', text: 'Главная', route: '/events' },
+        { icon: 'home', text: 'События', route: '/events' },
         { icon: 'arrow_forward', text: 'Войти', route: '/login' },
         { icon: 'group_add', text: 'Регистрация', route: '/register' }
       ]
