@@ -59,7 +59,7 @@ const router = new Router({
     },
     {
       path:'/event/add',
-      name:'event',
+      name:'eventadd',
       meta: { requiresAuth: true, roles: ['user'] },
       component: AddEvent
     },

@@ -105,7 +105,9 @@ import Vue from 'vue'
             classes () {
                 return {
                     'md6': this.size === 2,
-                    'md4': this.size === 3
+                    'md4': this.size === 3,
+                    // 'pa-0': this.size === 2,
+                    'pa-0': this.size === 2 || this.size === 1,
                 }
             }
 
