@@ -155,7 +155,6 @@ h1.font-weight-thin{
 }
 
 
-
 .profile-container{
     height: 100vh;
 }
@@ -278,6 +277,11 @@ form {
 .v-label.primary--text, div.primary--text{
     color: #223642 !important;
     caret-color: #223642 !important;
+}
+
+.primary--text {
+    color: unset !important;
+    caret-color: unset !important;
 }
 
 footer .grey.darken-3{

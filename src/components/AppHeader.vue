@@ -9,23 +9,9 @@
       fixed
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer" style="color: #fff"></v-toolbar-side-icon> -->
         <span class="hidden-sm-and-down">EventsMakers</span>
       </v-toolbar-title>
-
-      
-      <!-- <v-text-field v-if="this.$route.name == 'events'"
-        flat
-        solo-inverted
-        prepend-icon="search"
-        label="Найти мероприятие"
-        class="hidden-sm-and-down"
-        backgroundColor="#fafafa"
-      ></v-text-field> -->
       <v-toolbar-items class="hidden-sm-and-down" >
-        <!-- <v-btn flat to="#test">Link One</v-btn>
-        <v-btn flat>Link Two</v-btn>
-        <v-btn flat>Link Three</v-btn> -->
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <template v-for="item in items">
