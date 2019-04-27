@@ -8,10 +8,14 @@
       :clipped-left="$vuetify.breakpoint.mdAndUp"
       fixed
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
+
+        <router-link style="text-decoration:none;color:white;" to="/">
+      <v-toolbar-title  style="width: 300px" class="ml-0 pl-3">
         <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer" style="color: #fff"></v-toolbar-side-icon> -->
-        <span class="hidden-sm-and-down">EventsMakers</span>
+        <span  class="hidden-sm-and-down">EventsMakers</span>
       </v-toolbar-title>
+        </router-link>
+
 
       
       <!-- <v-text-field v-if="this.$route.name == 'events'"
@@ -78,7 +82,7 @@ export default {
       dialog: false,
       drawer: false, 
       items: [
-        { icon: 'home', text: 'Главная', route: '/events' },
+        { icon: 'home', text: 'События', route: '/events' },
         { icon: 'arrow_forward', text: 'Войти', route: '/login' },
         { icon: 'group_add', text: 'Регистрация', route: '/register' }
       ]

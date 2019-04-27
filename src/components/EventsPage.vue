@@ -1,6 +1,15 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <v-container fluid grid-list-xl class="pa-0">
+
+
+                <!--@change="updateMap($event.value)"
+        @selected="selectedMethod()"
+        v-model=""
+        :value="selectedMapOption"
+        :group="switchGroup"-->
+
         <v-layout row wrap>
+
             <v-flex xs9>
                 <v-layout wrap>
                     <v-flex xs12>
@@ -28,6 +37,8 @@
                                 width="290px"
                             >
                             <template v-slot:activator="{ on }">
+                                <toggle-switch :options="myOptions"/>
+                                <v-flex></v-flex>
                             <v-text-field
                                 v-model="date"
                                 label="Выберите дату"
@@ -110,6 +121,7 @@
                                     </v-list-tile-content>
                                 </v-list-tile>
                             </template>
+
                         </v-form>
                     </div>
                 </v-card>
@@ -119,6 +131,8 @@
 </template>
 
 <script>
+
+    import ToggleSwitch from 'vuejs-toggle-switch'
 
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
@@ -132,7 +146,8 @@
     export default {
         name: 'Feed',
         components: {
-            FeedCard: () => import('./FeedCard.vue')
+            FeedCard: () => import('./FeedCard.vue'),
+
         },
         data: () => ({
             date: new Date().toISOString().substr(0, 10),
@@ -143,11 +158,42 @@
             page: 1,
             events: [],
             itemsMenu: [
-                { icon: 'playlist_add', text: 'Добавить мероприятие', route: '/events' },
+                { icon: 'playlist_add', text: 'Добавить мероприятие', route: '/event/add' },
                 // { icon: 'list', text: 'Список мероприятий', route: '/login' },
                 // { icon: 'settings', text: 'Конструктор мероприятий', route: '/register' }
             ],
-            category: ['Музыка', 'Хореография', 'Театр'] //
+            category: ['Музыка', 'Хореография', 'Театр'],
+            myOptions: {
+                layout: {
+                    color: 'black',
+                    backgroundColor: 'lightgray',
+                    selectedColor: 'white',
+                    selectedBackgroundColor: 'green',
+                    borderColor: 'black',
+                    fontFamily: 'Arial',
+                    fontWeight: 'normal',
+                    fontWeightSelected: 'bold',
+                    squareCorners: false,
+                    noBorder: false
+                },
+                size: {
+                    fontSize: 1,
+                    height: 2,
+                    padding: 0,
+                    width: 20
+                },
+                items: {
+                    delay: .4,
+                    preSelected: 'Off',
+                    disabled: false,
+                    labels: [
+                        {name: 'Off', color: 'white', backgroundColor: 'blue'},
+                        {name: 'On', color: 'white', backgroundColor: 'blue'}
+                    ]
+                }
+            },
+
+            //
         }),
         created:function (){
             this.$http.get("/dimas/api/v1.0/events", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(

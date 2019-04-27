@@ -199,7 +199,7 @@ h1.font-weight-thin{
 .v-card{
     padding: 25px;
     background: unset !important;
-    box-shadow: unset !important;
+    /*box-shadow: unset !important;*/
 }
 
 .v-card.theme--light.v-sheet{

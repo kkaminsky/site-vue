@@ -11,7 +11,8 @@ Vue.use(Vuetify)
 
 Vue.prototype.$http = Axios;
 
-
+import ToggleSwitch from 'vuejs-toggle-switch'
+Vue.use(ToggleSwitch)
 
 Vue.config.productionTip = false
 
