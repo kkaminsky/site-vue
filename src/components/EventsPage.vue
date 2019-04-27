@@ -21,11 +21,10 @@
                             :size="layout[i]"
                             :value="article"/>
                 </v-layout>
-
             </v-flex>
             <v-flex xs3 class="side-right-menu">
                 <v-card>
-                    <div>
+                    <div class="vh-100 bg-white">
                         <v-form>
                             <v-dialog
                                 ref="dialog"

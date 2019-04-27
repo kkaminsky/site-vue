@@ -11,10 +11,6 @@
         <v-layout flex align-center justify-center>
 
             <v-flex xs12 sm4 elevation-6>
-                <v-flex><v-btn @click="loginVk">
-                    vk login
-                </v-btn></v-flex>
-                <a href="#" class="fa fa-facebook">gre</a>
             <v-toolbar class="pt-2 blue darken-4">
                 <v-toolbar-title class="white--text"><h4>Авторизация</h4></v-toolbar-title>
             </v-toolbar>
