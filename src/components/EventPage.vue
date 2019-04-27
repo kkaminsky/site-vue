@@ -338,7 +338,7 @@
         z-index: 100;
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         border-radius: 50%;
-        background: #c6c5c1;
+        background: #f5f5f5;
     }
     .button .next{
         display: inline-block;

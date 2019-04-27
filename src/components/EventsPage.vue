@@ -37,7 +37,8 @@
                                 width="290px"
                             >
                             <template v-slot:activator="{ on }">
-                                <toggle-switch :options="myOptions"/>
+                                <toggle-switch :options="myOptions" @input="changeCateg()"/>
+
                                 <v-flex></v-flex>
                             <v-text-field
                                 v-model="date"
@@ -58,12 +59,16 @@
                             </v-text-field>
                             <v-select
                             :items="category"
+                            v-model="selectCat"
                             label="Категория"
-                            solo
+                            attach
+                            chips
+
                             multiple
                             ></v-select>
                             <v-btn @click="login" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Найти</v-btn>
-                            <template v-for="item in itemsMenu">
+                            <template v-for="item in itemsMenu" >
+
                                 <v-layout
                                     row
                                     v-if="item.id"
@@ -93,34 +98,7 @@
                             </template>
 
 
-                            <template v-for="categ in category">
-                                <v-layout
-                                    row
-                                    v-if="categ.id"
-                                    align-center
-                                    :key="categ.id"
-                                >
-                                    <v-flex xs6>
-                                    <v-subheader v-if="categ.id">
-                                        {{ categ.id }}
-                                    </v-subheader>
-                                    </v-flex>
-                                    <v-flex xs6 class="text-xs-center">
-                                    <a href="#!" class="body-2 black--text">EDIT</a>
-                                    </v-flex>
-                                </v-layout>
-                                
-                                <v-list-tile :key="categ.name"  > 
-                                    <v-list-tile-action >
-                                    <v-icon>{{ categ.description }}</v-icon>
-                                    </v-list-tile-action>
-                                    <v-list-tile-content>
-                                    <v-list-tile-title>
-                                        {{ categ.name }}
-                                    </v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                            </template>
+
 
                         </v-form>
                     </div>
@@ -154,15 +132,18 @@
             menu: false,
             modal: false,
             menu2: false,
+            categ: false,
             layout: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             page: 1,
             events: [],
+            filteredEvents:[],
             itemsMenu: [
                 { icon: 'playlist_add', text: 'Добавить мероприятие', route: '/event/add' },
                 // { icon: 'list', text: 'Список мероприятий', route: '/login' },
                 // { icon: 'settings', text: 'Конструктор мероприятий', route: '/register' }
             ],
             category: ['Музыка', 'Хореография', 'Театр'],
+            selectCat:[],
             myOptions: {
                 layout: {
                     color: 'black',
@@ -184,11 +165,11 @@
                 },
                 items: {
                     delay: .4,
-                    preSelected: 'Off',
+                    preSelected: 'не краудфандинг',
                     disabled: false,
                     labels: [
-                        {name: 'Off', color: 'white', backgroundColor: 'blue'},
-                        {name: 'On', color: 'white', backgroundColor: 'blue'}
+                        {name: 'не краудфандинг', color: 'white', backgroundColor: 'blue'},
+                        {name: 'краудфандинг', color: 'white', backgroundColor: 'blue'}
                     ]
                 }
             },
@@ -200,32 +181,60 @@
                 response=>{
                     // console.log(response.data.events)
                     this.events = response.data.events
+                    this.filteredEvents = response.data.events
                 }
             )
 
             this.$http.get("/dimas/api/v1.0/categories", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
                 response=>{
                     // console.log(response.data.category)
-                    //this.category = response.data.categories
+                    this.category = response.data.categories.map(c=>c.name)
+
+
                 }
                 
             )
         },
         computed: {
 
+            categors(){
+              return this.category
+            },
+
             pages () {
                 return Math.ceil(this.$store.getters.events.length / 11)
             },
             paginatedArticles () {
-                const start = (this.page - 1) * 11
-                const stop = this.page * 11
-
-                return this.events.slice(start,stop)
+                let a =this.filteredEvents
+                if(this.selectCat.length){
+                    a = a.filter(e=>this.selectCat.filter(val=>e.categories.map(c=>c.name).indexOf(val)!==-1).length>0)
+                }
+                return a
             }
         },
         watch: {
             page () {
                 window.scrollTo(0, 0)
+            }
+        },
+        methods:{
+            changeCateg(){
+                this.categ=!this.categ
+                console.log(this.events)
+                if(this.categ){
+                    let events = this.events
+                    this.filteredEvents = events.filter(e=>e.eventType===1)
+                }
+                else{
+                    let events = this.events
+                    this.filteredEvents = events.filter(e=>e.eventType===2)
+                }
+                console.log(this.filteredEvents)
+
+
+
+
+
             }
         }
     }
