@@ -20,35 +20,44 @@
                     text-xs-right
                     ma-0
             >
-                <v-flex xs12>
-                    <v-chip  v-for="cat in value.categories"
+                <v-flex xs12 class="flex-row">
+                    
+                    <h3 class="title font-weight-bold mb-2">
+                        {{ value.name }}
+                        
+                    </h3>
+                    <span class="date-span">
+                            {{ value.beginingDate.substr(0, 10) }}
+                    </span>
+                    <!-- <div class="caption">
+                        
+                    </div> -->
+                </v-flex>
+                <v-chip  v-for="cat in value.categories"
                             label
                             class="mx-0 mb-2 text-uppercase"
                             :color="cat.color"
                             text-color="white"
                             small
-                            @click.stop=""
-                    >
-                        {{cat.name}}
-                    </v-chip>
-                    <h3 class="title font-weight-bold mb-2">
-                        {{ value.name }}
-
-
-                    </h3>
-                    <div class="caption">
-                        {{ value.beginingDate }}
-                    </div>
-                </v-flex>
-                <v-flex align-self-end>
+                            :key="cat.id"
+                        >
+                            {{cat.name}}
+                        </v-chip>
+                <v-flex class="flex-row">
+                    
+                    <!-- <v-flex class="flex-end">
+                        
+                    </v-flex> -->
+                    <v-spacer>
+                    </v-spacer>
                     <v-chip
-                            class="text-uppercase ma-0"
+                            class="text-uppercase ma-0 flex-end"
                             color="primary"
                             label
                             small
                             @click.stop=""
                     >
-                        Read More
+                    Просмотреть
                     </v-chip>
                 </v-flex>
             </v-layout>
@@ -60,6 +69,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+    Vue.use(require('vue-moment'));
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -71,7 +82,8 @@
 
     import {
         mapGetters,
-        mapMutations
+        mapMutations,
+
     } from 'vuex'
 
     export default {

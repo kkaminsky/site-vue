@@ -1,61 +1,125 @@
 <template>
-    <v-container
-            grid-list-xl
-    >
+    <v-container fluid grid-list-xl class="pa-0">
+        <v-layout row wrap>
+            <v-flex xs9>
+                <v-layout wrap>
+                    <v-flex xs12>
+                        <slot/>
+                    </v-flex>
+                    <feed-card
+                            v-for="(article, i) in paginatedArticles"
+                            :key="article.id"
+                            :size="layout[i]"
+                            :value="article"/>
+                </v-layout>
 
-        <v-layout wrap>
-            <v-flex xs12>
-                <slot/>
             </v-flex>
+            <v-flex xs3 class="side-right-menu">
+                <v-card>
+                    <div>
+                        <v-form>
+                            <v-dialog
+                                ref="dialog"
+                                v-model="modal"
+                                :return-value.sync="date"
+                                persistent
+                                lazy
+                                full-width
+                                width="290px"
+                            >
+                            <template v-slot:activator="{ on }">
+                            <v-text-field
+                                v-model="date"
+                                label="Выберите дату"
+                                prepend-icon="event"
+                                readonly
+                                v-on="on"
+                            ></v-text-field>
+                            </template>
+                            <v-date-picker v-model="date" scrollable>
+                            <v-spacer></v-spacer>
+                            <v-btn flat color="primary" @click="modal = false">Отмена</v-btn>
+                            <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                            </v-date-picker>
+                            </v-dialog>
+                            <v-text-field 
+                            label="Название мероприятия">
+                            </v-text-field>
+                            <v-select
+                            :items="category"
+                            label="Категория"
+                            solo
+                            multiple
+                            ></v-select>
+                            <v-btn @click="login" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Найти</v-btn>
+                            <template v-for="item in itemsMenu">
+                                <v-layout
+                                    row
+                                    v-if="item.id"
+                                    align-center
+                                    :key="item.id"
+                                >
+                                    <v-flex xs6>
+                                    <v-subheader v-if="item.id">
+                                        {{ item.id }}
+                                    </v-subheader>
+                                    </v-flex>
+                                    <v-flex xs6 class="text-xs-center">
+                                    <a href="#!" class="body-2 black--text">EDIT</a>
+                                    </v-flex>
+                                </v-layout>
+                                
+                                <v-list-tile :key="item.text" :to="item.route" > 
+                                    <v-list-tile-action >
+                                    <v-icon>{{ item.icon }}</v-icon>
+                                    </v-list-tile-action>
+                                    <v-list-tile-content>
+                                    <v-list-tile-title>
+                                        {{ item.text }}
+                                    </v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </template>
 
-            <feed-card
-                    v-for="(article, i) in paginatedArticles"
-                    :key="article.id"
-                    :size="layout[i]"
-                    :value="article"
-            />
-        </v-layout>
 
-        <v-layout align-center>
-            <v-flex xs3>
-                <base-btn
-                        v-if="page !== 1"
-                        class="ml-0"
-                        title="Previous page"
-                        square
-                        @click="page--"
-                >
-                    <v-icon>info</v-icon>
-                </base-btn>
-            </v-flex>
-
-            <v-flex
-                    xs6
-                    text-xs-center
-                    subheading
-            >
-                Стр. {{ page }} / {{ pages }}
-            </v-flex>
-
-            <v-flex
-                    xs3
-                    text-xs-right
-            >
-                <base-btn
-                        v-if="pages > 1 && page < pages"
-                        class="mr-0"
-                        title="Next page"
-                        square
-                        @click="page++"
-                >
-                    <v-icon>mdi-chevron-right</v-icon>
-                </base-btn>
+                            <template v-for="categ in category">
+                                <v-layout
+                                    row
+                                    v-if="categ.id"
+                                    align-center
+                                    :key="categ.id"
+                                >
+                                    <v-flex xs6>
+                                    <v-subheader v-if="categ.id">
+                                        {{ categ.id }}
+                                    </v-subheader>
+                                    </v-flex>
+                                    <v-flex xs6 class="text-xs-center">
+                                    <a href="#!" class="body-2 black--text">EDIT</a>
+                                    </v-flex>
+                                </v-layout>
+                                
+                                <v-list-tile :key="categ.name"  > 
+                                    <v-list-tile-action >
+                                    <v-icon>{{ categ.description }}</v-icon>
+                                    </v-list-tile-action>
+                                    <v-list-tile-content>
+                                    <v-list-tile-title>
+                                        {{ categ.name }}
+                                    </v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </template>
+                        </v-form>
+                    </div>
+                </v-card>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
+
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -71,16 +135,34 @@
             FeedCard: () => import('./FeedCard.vue')
         },
         data: () => ({
-            layout: [1, 2, 2, 1, 2, 2, 3, 3, 3, 2, 2, 2],
+            date: new Date().toISOString().substr(0, 10),
+            menu: false,
+            modal: false,
+            menu2: false,
+            layout: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             page: 1,
-            events: []
+            events: [],
+            itemsMenu: [
+                { icon: 'playlist_add', text: 'Добавить мероприятие', route: '/events' },
+                // { icon: 'list', text: 'Список мероприятий', route: '/login' },
+                // { icon: 'settings', text: 'Конструктор мероприятий', route: '/register' }
+            ],
+            category: ['Музыка', 'Хореография', 'Театр'] //
         }),
         created:function (){
             this.$http.get("/dimas/api/v1.0/events", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
                 response=>{
-                    console.log(response.data.events)
+                    // console.log(response.data.events)
                     this.events = response.data.events
                 }
+            )
+
+            this.$http.get("/dimas/api/v1.0/categories", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                response=>{
+                    // console.log(response.data.category)
+                    //this.category = response.data.categories
+                }
+                
             )
         },
         computed: {

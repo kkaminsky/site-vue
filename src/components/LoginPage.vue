@@ -1,4 +1,5 @@
 <style>
+
 .v-toolbar__content{
     display: flex;
     justify-content: center;
@@ -13,13 +14,14 @@
                 <v-flex><v-btn @click="loginVk">
                     vk login
                 </v-btn></v-flex>
+                <a href="#" class="fa fa-facebook">gre</a>
             <v-toolbar class="pt-2 blue darken-4">
                 <v-toolbar-title class="white--text"><h4>Авторизация</h4></v-toolbar-title>
             </v-toolbar>
             <v-card>
                 <v-card-text class="pt-4">
                 <div>
-                    <v-form v-model="valid" ref="form" @submit.prevent="login">
+                    <v-form v-model="valid" ref="form" @submit.prevent="login" class="bg-gray">
                         <v-text-field
                         label="Введите e-mail"
                         v-model="email"
@@ -90,8 +92,6 @@
                 //vk.api("user")
             },
           login () {
-
-
              let data = {
                 "email" : this.email,
                 "password" : this.password
