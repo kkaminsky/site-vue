@@ -103,7 +103,7 @@
                                 </div>
                             </v-card-title>
                             <v-card-actions class="justify-center">
-                                <v-btn @click="userLikeOrDisLike(user.id,1)">
+                                <v-btn :disabled="user.isLiked" @click="userLikeOrDisLike(user.id,1)">
                                     <v-icon>thumb_up_alt</v-icon>
                                 </v-btn>
                             </v-card-actions>
@@ -339,6 +339,7 @@
                             a.name = response.data.users[i].name
                             a.text = response.data.users[i].info
                             a.id = response.data.users[i].id
+                            a.isLiked = response.data.users[i].isLiked
                             //console.log(a)
                             this.someList.push(a)
                         }
