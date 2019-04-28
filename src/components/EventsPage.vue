@@ -1,31 +1,27 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <v-container fluid grid-list-xl class="pa-0">
-
-
-                <!--@change="updateMap($event.value)"
-        @selected="selectedMethod()"
-        v-model=""
-        :value="selectedMapOption"
-        :group="switchGroup"-->
-
         <v-layout row wrap>
-
-            <v-flex xs9>
+            <v-flex xs9 class="main-events-pa">
                 <v-layout wrap>
-                    <v-flex xs12>
-                        <slot/>
+                    <v-flex xs12 class="mt-4 ml-3">
+                        <h2 class="main-events-header text-left">Интересное для Вас: </h2>
+                        <!-- -->
+                        <hr class="my-2 hr-profile">
+                        <!-- <slot/> -->
                     </v-flex>
                     <feed-card
-                            v-for="(article, i) in paginatedArticles"
-                            :key="article.id"
-                            :size="layout[i]"
-                            :value="article"/>
+                        v-for="(article, i) in paginatedArticles"
+                        :key="article.id"
+                        :size="layout[i]"
+                        :value="article"/>
                 </v-layout>
             </v-flex>
-            <v-flex xs3 class="side-right-menu">
-                <v-card>
+            <v-flex xs3 class="side-right-menu white-color">
+                <v-card class="pt-0 w-25">
                     <div class="vh-100 bg-white">
                         <v-form>
+                            <h2 class="main-events-header text-left mt-2">Найдите свое: </h2>
+                            <hr class="my-2 hr-profile">
                             <v-dialog
                                 ref="dialog"
                                 v-model="modal"
@@ -36,7 +32,7 @@
                                 width="290px"
                             >
                             <template v-slot:activator="{ on }">
-                                <toggle-switch :options="myOptions" @input="changeCateg()"/>
+                                <toggle-switch :options="myOptions" @input="changeCateg()"/> 
 
                                 <v-flex></v-flex>
                             <v-text-field
@@ -53,9 +49,9 @@
                             <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
                             </v-date-picker>
                             </v-dialog>
-                            <v-text-field 
+                            <!-- <v-text-field 
                             label="Название мероприятия">
-                            </v-text-field>
+                            </v-text-field> -->
                             <v-select
                             :items="category"
                             v-model="selectCat"
@@ -65,7 +61,7 @@
 
                             multiple
                             ></v-select>
-                            <v-btn @click="login" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Найти</v-btn>
+
                             <template v-for="item in itemsMenu" >
 
                                 <v-layout
@@ -84,16 +80,13 @@
                                     </v-flex>
                                 </v-layout>
                                 
-                                <v-list-tile :key="item.text" :to="item.route" > 
-                                    <v-list-tile-action >
-                                    <v-icon>{{ item.icon }}</v-icon>
-                                    </v-list-tile-action>
-                                    <v-list-tile-content>
-                                    <v-list-tile-title>
-                                        {{ item.text }}
-                                    </v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
+                                <v-btn 
+                                :key="item.text"
+                                :to="item.route"
+                                color="success">
+                                    <v-icon left dark>add</v-icon>
+                                    {{item.text}}
+                                </v-btn>
                             </template>
 
 
@@ -131,7 +124,7 @@
             menu: false,
             modal: false,
             menu2: false,
-            layout: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            layout: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             categ: false,
             page: 1,
             events: [],
@@ -164,11 +157,11 @@
                 },
                 items: {
                     delay: .4,
-                    preSelected: 'не краудфандинг',
+                    preSelected: 'ОБЫЧНЫЕ',
                     disabled: false,
                     labels: [
-                        {name: 'не краудфандинг', color: 'white', backgroundColor: 'blue'},
-                        {name: 'краудфандинг', color: 'white', backgroundColor: 'blue'}
+                        {name: 'ОБЫЧНЫЕ', color: 'white', backgroundColor: '#5a5a5a'},
+                        {name: 'КРАУДФАНДИНГ', color: 'white', backgroundColor: '#5a5a5a'}
                     ]
                 }
             },
@@ -229,10 +222,6 @@
                     this.filteredEvents = events.filter(e=>e.eventType===2)
                 }
                 console.log(this.filteredEvents)
-
-
-
-
 
             }
         }

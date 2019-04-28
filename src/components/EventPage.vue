@@ -1,17 +1,24 @@
 <template>
     <div >
         <v-parallax :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))">
-            <v-layout row wrap class="flex-align-center h-100">
+            <!-- <v-layout row wrap class="flex-align-center h-100"> -->
+            <div class="layout-event flex-align-center h-100">
                 <v-flex xs8 class="flex-start px-4">
                     <h2 class="event-header text-left mb-2">{{eventName}}</h2>
                     <h4 class="event-subhead text-left">{{eventDescription}}</h4>
                 </v-flex>
-            </v-layout>
+                <!-- <v-flex xs4 class="px-4"> -->
+                    <v-btn xs4 color="success">
+                        Участвовать
+                    </v-btn>
+                <!-- </v-flex> -->
+            <!-- </v-layout> -->
+            </div>
             <div class="layout-event">                     
                 <v-flex md8 align-self-end justify-center style="align-self: flex-end; ">
                     <v-flex xs12 class="flex-none bg-white border-gray pa-0">
-                    <v-card style="height:100%">
-                        <v-card-text class="pt-4 px-4">
+                    <v-card style="height:100%" class="pa-0">
+                        <v-card-text class="py-2">
                         <div>
                             <div class="row flex-align-center">
                                 <div class="event-xs-6">
@@ -45,7 +52,7 @@
                             
                         </div>
                         </v-card-text>
-                        <span class="icon-notification">5</span>
+                        <span class="icon-notification">{{eventPoints}}</span>
                     </v-card>
     
                     </v-flex>
@@ -102,7 +109,7 @@
             </v-container>
         </v-container>
 
-        <v-container grid-list-md class="py-5 bg-white">
+        <v-container fluid grid-list-md class="py-5 bg-white">
             <v-layout row wrap class="justify-content-center">
                 <v-flex >
                     <v-layout row >
@@ -192,6 +199,7 @@
                 eventName:"",   
                 eventDescription:"",
                 eventBeginDate:"",
+                eventPoints:"",
                 eventPlace:"",
                 eventOrgs:"",
                 eventProducts:[],
@@ -235,6 +243,7 @@
                         this.eventName = response.data.event.name
                         this.eventBeginDate = response.data.event.beginingDate //place_id
                         this.eventPlace = response.data.event.place_id
+                        this.eventPoints = response.data.event.reward
                         this.eventCategories = response.data.event.categories
                         this.eventOrgs = response.data.event.organaizers
                         this.eventProducts = response.data.event.products
