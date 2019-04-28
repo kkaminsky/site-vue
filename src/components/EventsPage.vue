@@ -32,7 +32,7 @@
                                 width="290px"
                             >
                             <template v-slot:activator="{ on }">
-                                <toggle-switch :options="myOptions" @input="changeCateg()"/> 
+                                <toggle-switch :options="myOptions" @input="changeCateg()" class="flex-start"/> 
 
                                 <v-flex></v-flex>
                             <v-text-field
@@ -79,14 +79,17 @@
                                     <a href="#!" class="body-2 black--text">EDIT</a>
                                     </v-flex>
                                 </v-layout>
-                                
-                                <v-btn 
-                                :key="item.text"
-                                :to="item.route"
-                                color="success">
-                                    <v-icon left dark>add</v-icon>
-                                    {{item.text}}
-                                </v-btn>
+                                <div class="flex-start">
+                                     <v-btn
+                                     class="ma-0" 
+                                    :key="item.text"
+                                    :to="item.route"
+                                    color="success">
+                                        <v-icon left dark>add</v-icon>
+                                        {{item.text}}
+                                    </v-btn>
+                                </div>
+                               
                             </template>
 
 
@@ -160,8 +163,8 @@
                     preSelected: 'ОБЫЧНЫЕ',
                     disabled: false,
                     labels: [
-                        {name: 'ОБЫЧНЫЕ', color: 'white', backgroundColor: '#5a5a5a'},
-                        {name: 'КРАУДФАНДИНГ', color: 'white', backgroundColor: '#5a5a5a'}
+                        {name: 'ОБЫЧНЫЕ', color: 'white', backgroundColor: '#151724'},
+                        {name: 'КРАУДФАНДИНГ', color: 'white', backgroundColor: '#151724'}
                     ]
                 }
             },

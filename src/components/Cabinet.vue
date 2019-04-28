@@ -10,7 +10,7 @@
             <v-flex xs9>
                 <v-layout flex align-center justify-center>
                     <v-flex xs12 class="bg-white border-gray">
-                    <v-card>
+                    <v-card class="unset-box-shadow">
                         <v-card-text class="pt-4">
                         <div>
                             <h2 class="profile-header text-left">{{user.surname}}  {{user.name}}</h2>
