@@ -10,6 +10,10 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 Vue.prototype.$http = Axios;
+import DatetimePicker from 'vuetify-datetime-picker'
+import 'vuetify-datetime-picker/src/stylus/main.styl'
+
+Vue.use(DatetimePicker)
 
 import ToggleSwitch from 'vuejs-toggle-switch'
 Vue.use(ToggleSwitch)
