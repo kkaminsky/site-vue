@@ -27,7 +27,8 @@
                         
                     </h3>
                     <span class="date-span">
-                            {{ value.beginingDate.substr(0, 10) }}
+
+                            {{ parseISOString(value.beginingDate) }}
                     </span>
                     <!-- <div class="caption">
                         
@@ -69,6 +70,7 @@
 </template>
 
 <script>
+
 import Vue from 'vue'
     Vue.use(require('vue-moment'));
     function getRandomColor() {
@@ -111,6 +113,14 @@ import Vue from 'vue'
                 }
             }
 
+        },
+        methods:{
+            parseISOString(s) {
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', };
+
+                var b = s.split(/\D+/);
+                return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])).toLocaleDateString('ru-RU', options) + " " + new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) ;
+            }
         }
     }
 </script>
