@@ -12,6 +12,7 @@
                 :src="require(`@/assets/articles/${value.id}`.concat('.jpg'))"
                 height="100%"
                 gradient="rgba(0, 0, 0, .42), rgba(0, 0, 0, .42)"
+                class="main-event-image"
         >
             <v-layout
                     v-if="!value.prominent"
@@ -20,29 +21,28 @@
                     text-xs-right
                     ma-0
             >
-                <v-flex xs12 class="flex-row">
-                    
-                    <h3 class="title font-weight-bold mb-2">
-                        {{ value.name }}
-                        
-                    </h3>
-                    <span class="date-span">
-                            {{ value.beginingDate.substr(0, 10) }}
-                    </span>
-                    <!-- <div class="caption">
-                        
-                    </div> -->
-                </v-flex>
-                <v-chip  v-for="cat in value.categories"
-                            label
-                            class="mx-0 mb-2 text-uppercase"
-                            :color="cat.color"
-                            text-color="white"
-                            small
-                            :key="cat.id"
+                <v-flex xs12 class="d-flex flex-direction-column">
+                    <div class="text-left h-0">
+                        <v-chip  v-for="cat in value.categories"
+                                label
+                                class="ml-1 mb-1 text-uppercase"
+                                :color="cat.color"
+                                text-color="white"
+                                small
+                                :key="cat.id"
                         >
-                            {{cat.name}}
+                        {{cat.name}}
                         </v-chip>
+                    </div>
+                    <h3 class="title font-weight-bold pt-0">
+                        {{ value.name }}
+                    </h3>
+                    <!-- <span class="date-span">
+                        {{ value.beginingDate.substr(0, 10) }}
+                    </span> -->
+
+                </v-flex>
+                
                 <v-flex class="flex-row">
                     
                     <!-- <v-flex class="flex-end">
@@ -50,15 +50,10 @@
                     </v-flex> -->
                     <v-spacer>
                     </v-spacer>
-                    <v-chip
-                            class="text-uppercase ma-0 flex-end"
-                            color="primary"
-                            label
-                            small
-                            @click.stop=""
-                    >
-                    Просмотреть
-                    </v-chip>
+                    <span class="date-span">
+                        {{ value.beginingDate.substr(0, 10) }}
+                    </span>
+                    
                 </v-flex>
             </v-layout>
         </v-img>
