@@ -17,7 +17,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/dimas': {
-                target: 'http://l92.168.0.126:5000/',
+                target: 'http://192.168.0.126:5000/',
                 pathRewrite: {
                     '/dimas' : ''
                 }
