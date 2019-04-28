@@ -14,8 +14,16 @@
             </v-toolbar>
             <v-card>
                 <v-card-text class="pt-4">
+                <div v-if="message" class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
                 <div>
-                    <v-form v-model="valid" ref="form" @submit.prevent="register">
+                    <v-form v-model="valid" ref="form" @submit.prevent="register" class="bg-gray">
+                        <v-text-field
+                        label="Ваше имя"
+                        v-model="name"
+                        required
+                        ></v-text-field>
                         <v-text-field
                         label="Введите e-mail"
                         v-model="email"
@@ -46,7 +54,7 @@
                         ></v-text-field>
 
                         <v-layout justify-space-between>
-                            <v-btn :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Зарегистрироваться</v-btn>
+                            <v-btn @click="register" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Зарегистрироваться</v-btn>
                         </v-layout>
                     </v-form>
                 </div>
@@ -64,6 +72,7 @@
             valid: false,
             e1: false,
             password: '',
+            message: '',
             passwordRules: [
               (v) => !!v || 'Password is required',
             ],
@@ -72,16 +81,17 @@
         },
         methods: {
           register () {
-            const{email, password, repassword} = this
-            // data = {
-            //     "email" : email,
-            //     "password" : password
-            // }
-            // this.$http.post("/dimas/api/v1.0/users/login", data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
-            //     response=>{              
-            //         console.log(response.data);
-            //     }
-            // )
+            let self = this;
+            let data = {
+                "name" : this.name,
+                "email" : this.email,
+                "password" : this.password
+            }
+            this.$http.post("/dimas/api/v1.0/users", data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                response=>{              
+                    self.message = 'Вы успешно зарегистрировались!'
+                }
+            )
           }
         },
         name: "RegisterPage",

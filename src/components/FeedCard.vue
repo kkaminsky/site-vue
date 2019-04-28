@@ -12,6 +12,7 @@
                 :src="require(`@/assets/articles/${value.id}`.concat('.jpg'))"
                 height="100%"
                 gradient="rgba(0, 0, 0, .42), rgba(0, 0, 0, .42)"
+                class="main-event-image"
         >
             <v-layout
                     v-if="!value.prominent"
@@ -20,36 +21,39 @@
                     text-xs-right
                     ma-0
             >
-                <v-flex xs12>
-                    <v-chip  v-for="cat in value.categories"
-                            label
-                            class="mx-0 mb-2 text-uppercase"
-                            :color="cat.color"
-                            text-color="white"
-                            small
-                            @click.stop=""
-                    >
+                <v-flex xs12 class="d-flex flex-direction-column">
+                    <div class="text-left h-0">
+                        <v-chip  v-for="cat in value.categories"
+                                label
+                                class="ml-1 mb-1 text-uppercase"
+                                :color="cat.color"
+                                text-color="white"
+                                small
+                                :key="cat.id"
+                        >
                         {{cat.name}}
-                    </v-chip>
-                    <h3 class="title font-weight-bold mb-2">
-                        {{ value.name }}
-
-
-                    </h3>
-                    <div class="caption">
-                        {{ value.beginingDate }}
+                        </v-chip>
                     </div>
+                    <h3 class="title font-weight-bold pt-0">
+                        {{ value.name }}
+                    </h3>
+                    <!-- <span class="date-span">
+                        {{ value.beginingDate.substr(0, 10) }}
+                    </span> -->
+
                 </v-flex>
-                <v-flex align-self-end>
-                    <v-chip
-                            class="text-uppercase ma-0"
-                            color="primary"
-                            label
-                            small
-                            @click.stop=""
-                    >
-                        Read More
-                    </v-chip>
+
+                <v-flex class="flex-row">
+                    
+                    <!-- <v-flex class="flex-end">
+                        
+                    </v-flex> -->
+                    <v-spacer>
+                    </v-spacer>
+                    <span class="date-span">
+                        {{parseISOString(value.beginingDate) }}
+                    </span>
+
                 </v-flex>
             </v-layout>
         </v-img>
@@ -60,6 +64,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+    Vue.use(require('vue-moment'));
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -71,7 +77,8 @@
 
     import {
         mapGetters,
-        mapMutations
+        mapMutations,
+
     } from 'vuex'
 
     export default {
@@ -93,10 +100,20 @@
             classes () {
                 return {
                     'md6': this.size === 2,
-                    'md4': this.size === 3
+                    'md4': this.size === 3,
+                    // 'pa-0': this.size === 2,
+                    'pa-0': this.size === 2 || this.size === 1,
                 }
             }
 
+        },
+        methods:{
+            parseISOString(s) {
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', };
+
+                var b = s.split(/\D+/);
+                return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])).toLocaleDateString('ru-RU', options) + " " + new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) ;
+            }
         }
     }
 </script>

@@ -6,7 +6,7 @@ import Cabinet from './views/Cabinet.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Event from './views/Event.vue'
-
+import AddEvent from './views/AddEvent.vue'
 
 
 
@@ -56,7 +56,13 @@ const router = new Router({
       name:'event',
       meta: { requiresAuth: true, roles: ['user'] },
       component: Event
-    }
+    },
+    {
+      path:'/event/add',
+      name:'eventadd',
+      meta: { requiresAuth: true, roles: ['user'] },
+      component: AddEvent
+    },
   ],
   mode:'history'
 })

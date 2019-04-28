@@ -25,7 +25,7 @@
         white--text
         xs12
       >
-        &copy;2019 — <strong>EventsMakers</strong>
+        &copy;2019 — <strong>The Event</strong>
       </v-flex>
     </v-layout>
   </v-footer>
