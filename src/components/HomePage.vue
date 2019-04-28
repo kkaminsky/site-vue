@@ -18,7 +18,7 @@
         >
           <v-item>
             <v-card
-              class="d-flex align-center"
+              class="d-flex align-center bg-white"
               height="250"
             >
             <div class="text-xs-center">
@@ -49,7 +49,7 @@
           :key="card.heading"
          xs12
          >
-            <v-card>
+            <v-card class=" unset-box-shadow">
                 <v-layout row v-if="card.swipe == '1'">   
                     <v-flex xs8>
                         <v-img
@@ -109,7 +109,7 @@
         >
           <v-item>
             <v-card
-              class="d-flex align-center"
+              class="d-flex align-center bg-white"
               height="250"
             >
             <div
