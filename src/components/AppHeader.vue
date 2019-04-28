@@ -8,7 +8,7 @@
       :clipped-left="$vuetify.breakpoint.mdAndUp"
       fixed
     >
-      <v-toolbar-title class="nav-toolbar flex-align-center ml-0 pl-0">
+      <v-toolbar-title class="nav-toolbar flex-align-center">
          <img :src="require(`@/assets/articles/Logo`.concat('.png'))" class="logo-img">
          <img>
         <!-- <span class="hidden-sm-and-down">EventsMakers</span> -->
