@@ -3,14 +3,15 @@
         <v-parallax :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))">
             <!-- <v-layout row wrap class="flex-align-center h-100"> -->
             <div class="layout-event flex-align-center h-100">
-                <v-flex xs8 class="flex-start px-4">
-                    <h2 class="event-header text-left mb-2">{{eventName}}</h2>
-                    <h4 class="event-subhead text-left">{{eventDescription}}</h4>
-                </v-flex>
-                <!-- <v-flex xs4 class="px-4"> -->
-                    <v-btn xs4 color="success" @click="patchUser()">
+                <v-flex xs8 class="flex-start pr-4">
+                    <h2 class="event-header text-left">{{eventName}}</h2>
+                    <h4 class="event-subhead text-left pl-1 mb-3">{{eventDescription}}</h4>
+                    <v-btn color="#ffdd59" @click="patchUser()">
                         Участвовать
                     </v-btn>
+                </v-flex>
+                <!-- <v-flex xs4 class="px-4"> -->
+
                 <!-- </v-flex> -->
             <!-- </v-layout> -->
             </div>
@@ -24,16 +25,19 @@
                                 <div class="event-xs-6">
                                     <p class="text-left"><span class="gray-text">Место проведения:</span> {{eventPlaceResponce}}</p> 
                                     <p class="text-left"><span class="gray-text">Время начала:</span> {{eventBeginDate}} </p>
-                                    <v-chip xs6  v-for="cat in eventCategories"
+                                    <div class="text-left">
+                                        <v-chip xs6  v-for="cat in eventCategories"
                                         label
                                         class="mx-1 mb-2 text-uppercase"
                                         :color="cat.color"
                                         text-color="white"
                                         small
                                         :key="cat.id"
-                                    >
-                                        {{cat.name}}
-                                    </v-chip>
+                                        >
+                                            {{cat.name}}
+                                        </v-chip>
+                                    </div>
+
                                 </div>
                                 <div v-for="org in eventOrgs"
                                     :key="org.id" class="event-xs-6">

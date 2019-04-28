@@ -358,6 +358,10 @@ h1.font-weight-thin{
     height: 100%;
 }
 
+.unset-box-shadow{
+    box-shadow: unset !important;
+}
+
 .flex-align-center{
     display: flex;
     justify-content: center;
