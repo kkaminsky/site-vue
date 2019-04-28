@@ -21,6 +21,7 @@
     "vk-io": "^4.0.0-rc.17",
     "vk-openapi": "^0.1.2",
     "vue": "^2.6.6",
+    "vue-meta": "^1.6.0",
     "vue-moment": "^4.0.0",
     "vue-pie-chart": "^1.1.0",
     "vue-router": "^3.0.1",

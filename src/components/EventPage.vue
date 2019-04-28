@@ -1,24 +1,23 @@
 <template>
     <div >
-        <v-parallax :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))"></v-parallax>
-        <v-container grid-list-md>
-            <v-layout row wrap>
-                <v-flex >
-                    <v-layout row>                     
-                        <v-flex md6>
-                            <!-- <v-img :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))" aspect-ratio="1.7" style="min-width:300px; height:100%;"  ></v-img> -->
-                        </v-flex>
-                        <v-flex md6 flex align-center justify-center >
-                            <v-flex xs12 class="bg-white border-gray pa-0" style="height:100%" >
-                            <v-card style="height:100%">
-                                <v-card-text class="pt-4">
-                                <div>
-                                    <h2 class="profile-header text-left mb-2" style="font-size:2rem">{{eventName}}</h2>
-                                    <h4 class="profile-subhead text-left">{{eventDescription}}</h4>
-                                    <hr class="my-3 hr-profile">
+        <v-parallax :src="require(`@/assets/articles/${this.$router.currentRoute.path.split('/')[2]}`.concat('.jpg'))">
+            <v-layout row wrap class="flex-align-center h-100">
+                <v-flex xs8 class="flex-start px-4">
+                    <h2 class="event-header text-left mb-2">{{eventName}}</h2>
+                    <h4 class="event-subhead text-left">{{eventDescription}}</h4>
+                </v-flex>
+            </v-layout>
+            <div class="layout-event">                     
+                <v-flex md8 align-self-end justify-center style="align-self: flex-end; ">
+                    <v-flex xs12 class="flex-none bg-white border-gray pa-0">
+                    <v-card style="height:100%">
+                        <v-card-text class="pt-4 px-4">
+                        <div>
+                            <div class="row flex-align-center">
+                                <div class="event-xs-6">
                                     <p class="text-left"><span class="gray-text">Место проведения:</span> {{eventPlaceResponce}}</p> 
                                     <p class="text-left"><span class="gray-text">Время начала:</span> {{eventBeginDate}} </p>
-                                    <v-chip  v-for="cat in eventCategories"
+                                    <v-chip xs6  v-for="cat in eventCategories"
                                         label
                                         class="mx-1 mb-2 text-uppercase"
                                         :color="cat.color"
@@ -28,52 +27,58 @@
                                     >
                                         {{cat.name}}
                                     </v-chip>
-                                    
                                 </div>
-                                </v-card-text>
-                            </v-card>
-                            </v-flex>
-                        </v-flex>
-                    </v-layout>
+                                <div v-for="org in eventOrgs"
+                                    :key="org.id" class="event-xs-6">
+                                    <p class="text-center"><span class="gray-text">Организатор</span></p>
+                                    <v-avatar size="120px">
+                                        <img :src = orgImg>
+                                    </v-avatar>
+                                    <v-card-title>
+                                        <div class="flex text-sm-center">
+                                            <div class="subheading">{{org.name}}</div>
+                                        </div>
+                                    </v-card-title>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        </v-card-text>
+                        <span class="icon-notification">5</span>
+                    </v-card>
+    
+                    </v-flex>
+                </v-flex>
+              
+            </div>
+        </v-parallax>
+        <v-container grid-list-md class="py-5">
+            <v-layout row wrap>
+                <v-flex >
                     <v-layout row >
-
                         <v-flex >
-                            <h2 class="display-2 mt-5">Участники</h2>
-                            <v-btn @click="change"></v-btn>
+                            <h2 class="text-xs-center display-1 mb-5 afterTag">Участники</h2>
+                            <v-flex class="d-flex text-xs-center headline mt-4">
+                                <p>Поставьте лайк тем участникам,
+                                с которыми вы хотите пойти на это событие. <br />
+                                Если это взаимно - вам ответит наш бот Вконтакте</p>
+                            </v-flex>
 
                         </v-flex>
-
                     </v-layout>
-
                 </v-flex>
             </v-layout>
                 <v-flex v-show="flag">
-                    <div>
-
-                        <!--<div class="controls">
-                            <button @click="prev" class="button"><i class="prev"></i><span class="text-hidden">prev</span></button>
-                            <button @click="next" class="button"><i class="next"></i><span class="text-hidden">next</span></button>
-                        </div>-->
-                    </div>
-                    <!--<GameCardsStack
-                            :cards="visibleCards"
-                            @cardAccepted="handleCardAccepted"
-                            @cardRejected="handleCardRejected"
-                            @cardSkipped="handleCardSkipped"
-                            @hideCard="removeCardFromDeck"
-                    />-->
                     <div class="stack-wrapper">
                         <stack ref="stack" :pages="someList" :stackinit="stackinit"></stack>
-
                     </div>
                     <div class="controls">
                         <button @click="prev" class="button"><i class="prev"></i><span class="text-hidden">prev</span></button>
                         <button @click="next" class="button"><i class="next"></i><span class="text-hidden">next</span></button>
                     </div>
                 </v-flex>
-            
-            
-            <v-container fluid>
+            <v-container fluid class="py-4">
                 <v-layout wrap>
                     <v-flex v-for="user in compArrSomeLis" md4>
                         <v-card  color="white">
@@ -88,7 +93,55 @@
                             </v-card-title>
                             <v-card-actions class="justify-center">
                                 <v-btn @click="userLikeOrDisLike(user.id,1)">
-                                    <v-icon>call_merge</v-icon>
+                                    <v-icon>thumb_up_alt</v-icon>
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-container>
+
+        <v-container grid-list-md class="py-5 bg-white">
+            <v-layout row wrap class="justify-content-center">
+                <v-flex >
+                    <v-layout row >
+                        <v-flex >
+                            <h2 class="text-xs-center display-1 mb-5 afterTag">Мерч</h2>
+                            <v-flex class="d-flex text-xs-center headline mt-4">
+                                <p>Полученные баллы за мероприятие вы можете потратить
+                                    на предложенный мерч
+                                </p>
+                            </v-flex>
+
+                        </v-flex>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+                <v-flex v-show="flag">
+                    <div class="stack-wrapper">
+                        <stack ref="stack" :pages="someList" :stackinit="stackinit"></stack>
+                    </div>
+                    <div class="controls">
+                        <button @click="prev" class="button"><i class="prev"></i><span class="text-hidden">prev</span></button>
+                        <button @click="next" class="button"><i class="next"></i><span class="text-hidden">next</span></button>
+                    </div>
+                </v-flex>
+            <v-container fluid class="py-4">
+                <v-layout wrap class="justify-content-center">
+                    <v-flex v-for="product in eventProducts" md4>
+                        <v-card  color="white">
+                            <img :src="require(`@/assets/articles/${product.img_name}`)">
+                            <v-card-title>
+                                <div class="flex text-sm-center">
+                                    <div class="subheading">{{product.name}}</div>
+                                    <span class="caption">{{product.price}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions class="justify-center">
+                                <!-- @click="" -->
+                                <v-btn > 
+                                    <v-icon>attach_money</v-icon>
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
@@ -134,10 +187,14 @@
                         size: '36'
                     }
                 }],
+                productImg: '//tscstatic.customimagesinc.com/ProductImages/Asi34233721_300x.jpg',
+                orgImg:'https://avataaars.io/?avatarStyle=Transparent&topType=Hat&accessoriesType=Sunglasses&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Happy&eyebrowType=Default&mouthType=Default&skinColor=Light',
                 eventName:"",   
                 eventDescription:"",
                 eventBeginDate:"",
                 eventPlace:"",
+                eventOrgs:"",
+                eventProducts:[],
                 eventCategories: [],
                 str: "",
                 eventPlaceResponce:"",
@@ -160,11 +217,8 @@
               let a = {
               }
               for (var i = 0; i < this.users.length; i++){
-                  console.log(i)
                   a.name = i
-
                   a.user = this.users[i]
-                  console.log(this.users[i])
                   arr.push(a)
               }
               this.mySuperCard = arr
@@ -182,6 +236,8 @@
                         this.eventBeginDate = response.data.event.beginingDate //place_id
                         this.eventPlace = response.data.event.place_id
                         this.eventCategories = response.data.event.categories
+                        this.eventOrgs = response.data.event.organaizers
+                        this.eventProducts = response.data.event.products
                         this.$http.get("/dimas/api/v1.0/places/" + response.data.event.place_id, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
                             response=>{
                                 this.eventPlaceResponce = response.data.place.name
