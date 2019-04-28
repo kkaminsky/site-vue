@@ -153,7 +153,7 @@
             menu: false,
             modal: false,
             menu2: false,
-            layout: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            layout: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             page: 1,
             events: [],
             itemsMenu: [

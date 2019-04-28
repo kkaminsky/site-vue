@@ -1,5 +1,5 @@
 .nav-main{
-    background: #223642 !important;
+    background: linear-gradient(to left, #151724, #0f1019);
     color: #fff !important
 }
 .hidden-sm-and-down .v-icon {
@@ -8,6 +8,12 @@
 
 .gray-text{
     color:#838383;
+}
+
+.flex-none{
+    flex-basis: unset !important;
+    flex-grow: unset !important;
+    /* max-width: unset !important; */
 }
 
 .v-picker.v-card, .v-select-list.v-card.theme--light{
@@ -153,9 +159,42 @@ h1.font-weight-thin{
     background: #fafafa !important;
 }
 
+.h-100{
+    height: 100%;
+}
+
 
 .profile-container, .vh-100{
     height: 100vh;
+}
+
+.event-header{
+    font-size: 4.3rem !important;
+    font-weight: 600;
+}
+
+.event-header::first-letter, .event-subhead::first-letter{
+    text-transform: uppercase;
+}
+
+.event-subhead{
+    font-size: 1.6rem !important;
+    font-weight: 100;
+}
+
+.visitors-subhead{
+    font-size: 1.2rem !important;
+    font-weight: 100;
+}
+
+
+.event-xs-6{
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 50%;
 }
 
 .profile-header{
@@ -235,6 +274,27 @@ h1.font-weight-thin{
     text-align: left;
 }
 
+.icon-notification{
+    position: absolute;
+    top: -27px;
+    right: -27px;
+    padding: 5px 18px;
+    border-radius: 50px;
+    font-size: 1.8rem;
+    background: #fddd4c;
+    color: #151724;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.layout-event{
+    background: rgba(0,0,0, 0.7);
+    justify-content: center;
+    display: flex;
+}
+
 .flex-end{
     display: flex;
     align-self: flex-end;
@@ -248,6 +308,27 @@ h1.font-weight-thin{
     text-align: right;
 }
 
+.logo-img{
+    height: 80%;
+}
+
+.nav-toolbar{
+    width: 16%;
+    height: 100%;
+}
+
+.flex-align-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-start{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .flex-settings{
     display: flex;
     /* justify-content: center; */
@@ -258,6 +339,10 @@ h1.font-weight-thin{
 .flex-row{
     display: flex;
     flex-direction: row;
+}
+
+.justify-content-center{
+    justify-content: center;
 }
 
 .justify-content-end{
