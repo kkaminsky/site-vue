@@ -8,7 +8,7 @@
                     <h4 class="event-subhead text-left">{{eventDescription}}</h4>
                 </v-flex>
                 <!-- <v-flex xs4 class="px-4"> -->
-                    <v-btn xs4 color="success">
+                    <v-btn xs4 color="success" @click="patchUser()">
                         Участвовать
                     </v-btn>
                 <!-- </v-flex> -->
@@ -234,6 +234,16 @@
           }
         },
         methods: {
+            patchUser(){
+                let data = {
+                    "user_id": localStorage.getItem("user")
+                }
+              this.$http.put("/dimas/api/v1.0/events/".concat(this.$router.currentRoute.path.split('/')[2]).concat("/students"),data,{ 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                  res=>{
+                      this.load()
+                  }
+              )
+            },
             load(){
                 let a = this.$router.currentRoute
                // console.log(a.path.split('/')[1])
