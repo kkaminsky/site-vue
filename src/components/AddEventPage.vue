@@ -10,9 +10,9 @@
         <v-layout row>
             <v-flex md6>
                 <v-text-field
-                        label="Your product or service"
-
-                        hint="For example, flowers or used cars"
+                        label="Название"
+                        v-model="name"
+                        hint="Например, makerthon"
                         outline
                 ></v-text-field>
             </v-flex>
@@ -23,9 +23,9 @@
         <v-layout row>
             <v-flex md6>
                 <v-text-field
-                        label="Your product or service"
-
-                        hint="For example, flowers or used cars"
+                        label="Описание"
+                        v-model="description"
+                        hint="Например, соревнование проф. мастерства"
                         outline
                 ></v-text-field>
             </v-flex>
@@ -41,7 +41,7 @@
                     :items="comItem"
                     :search-input.sync="search"
                     hide-selected
-                    label="Search for an option"
+                    label="Категория"
                     multiple
                     small-chips
                     solo
@@ -196,8 +196,39 @@
         <v-layout row>
             <v-flex md6>
                 <v-combobox
-                        v-model="select"
-                        :items="items2"
+                        v-model="select1"
+                        :items="comItems1"
+                        chips
+                        class="pa-0 mt-0"
+
+                >
+                    <template v-slot:selection="data">
+                        <v-chip
+                                :key="JSON.stringify(data.item)"
+                                :selected="data.selected"
+                                :disabled="data.disabled"
+                                class="v-chip--select-multi"
+                                @click.stop="data.parent.selectedIndex = data.index"
+                                @input="data.parent.selectItem(data.item)"
+                        >
+                            <v-avatar class="accent white--text">
+                                {{ data.item.slice(0, 1).toUpperCase() }}
+                            </v-avatar>
+                            {{ data.item }}
+                        </v-chip>
+                    </template>
+                </v-combobox>
+            </v-flex>
+
+        </v-layout>
+        <v-layout row>
+            <v-flex style="text-align:left;"  md6>Выберите площадку: </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex md6>
+                <v-combobox
+                        v-model="select2"
+                        :items="comItems2"
                         chips
                         class="pa-0 mt-0"
 
@@ -247,6 +278,11 @@
             </v-flex>
 
         </v-layout>
+        <v-layout row>
+            <v-btn @click="post()">
+                Создать
+            </v-btn>
+        </v-layout>
 
     </v-container>
 </template>
@@ -256,25 +292,31 @@
     export default {
         data: () => ({
             eventDateTime1: new Date(),
+            name:"",
+            description:"",
             eventDateTime2: new Date(),
             activator: null,
             attach: null,
             colors: ['green', 'purple', 'indigo', 'cyan', 'teal', 'orange'],
             editing: null,
             index: -1,
-            select: 'Не краудфандинг',
-            items2: [
+            select1: 'Не краудфандинг',
+            select2:'',
+            myMap:new Map(),
+            mySuperMap: new Map(),
+            items1: [
                 'Краудфандинг',
-                'Не краудфандинг'
+                'Обычный'
+            ],
+            items2:[
 
             ],
             items: [
-                { header: 'Select an option or create one' }
+                { header: 'Выберите категорию' }
             ],
             nonce: 1,
             menu: false,
             model: [
-
             ],
             x: 0,
             search: null,
@@ -286,6 +328,12 @@
             },
             comColors(){
                 return this.colors
+            },
+            comItems1(){
+                return this.items1
+            },
+            comItems2(){
+                return this.items2
             }
         },
 
@@ -310,15 +358,17 @@
             }
         },
         created:function(){
+            let vm = this
             this.$http.get("/dimas/api/v1.0/categories", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
                 response=>{
                     // console.log(response.data.category)
-                    this.items = [{ header: 'Select an option or create one' }]
+                    this.items = [{ header: 'Выберите категорию' }]
                     //this.colors = response.data.categories.map(c=>c.color)
                     for(var i=0;i<response.data.categories.length;i++){
                         let a = {}
                         a.color = response.data.categories[i].color
                         a.text = response.data.categories[i].name
+                        vm.mySuperMap.set(response.data.categories[i].name,response.data.categories[i].id)
                         this.items.push(a)
                     }
                     console.log(this.items)
@@ -329,9 +379,81 @@
                 }
 
             )
+
+            this.$http.get("/dimas/api/v1.0/places", { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                response=>{
+                    this.items2 = response.data.places.map(p=>p.name)
+
+                    for(var i =0;i<response.data.places.length;i++){
+                        this.myMap.set(response.data.places[i].name,response.data.places[i].id)
+                    }
+                    // console.log(response.data.category)
+                    //this.items = [{ header: 'Select an option or create one' }]
+                    //this.colors = response.data.categories.map(c=>c.color)
+                    /*for(var i=0;i<response.data.categories.length;i++){
+                        let a = {}
+                        a.color = response.data.categories[i].color
+                        a.text = response.data.categories[i].name
+                        this.items.push(a)
+                    }*/
+                    //console.log(this.items)
+
+                    //.concat(response.data.categories.map(c=>c.text=c.name))
+
+
+                }
+
+            )
         },
 
         methods: {
+            post(){
+                let vm = this
+                let eT = 1
+                if(this.select1==="Обычный"){
+                    eT = 1
+                }
+                else {
+                    eT = 2
+                }
+                console.log(this.select2)
+                console.log(this.myMap)
+                let data = {
+                    "beginingDate" : this.eventDateTime1.toISOString(),
+                    "endingDate":this.eventDateTime2.toISOString(),
+                    "eventStatus_id": 1,
+                    "reward":20,
+                    "participantsCount": 100,
+                    "eventType": eT,
+                    "description":this.description,
+                    "name":this.name,
+                    "place_id": this.myMap.get(this.select2)
+                }
+
+                this.$http.post("/dimas/api/v1.0/events",data, { 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(res1=>{
+                    let categ = []
+                    for(var i=0;i<vm.model.length;i++){
+                        categ.push(vm.mySuperMap.get(vm.model[i].text))
+                    }
+
+                    let data2 = {"event_categories":categ}
+
+                    vm.$http.put("/dimas/api/v1.0/events/".concat(res1.data.event.id).concat("/categories"),data2,{ 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                        res2=>{
+                            let data3 = {"user_id":localStorage.getItem("user")}
+                            vm.$http.post("/dimas/api/v1.0/events/".concat(res1.data.event.id).concat("/organaizers"),data3,{ 'headers': { 'Authorization': "Basic ZG1pdHJ5OjEyMzQ=" } }).then(
+                                res3=>{
+                                    vm.$router.push('/events')
+                                }
+                            )
+                        }
+
+                    )
+                    //console.log(res)
+                    //vm.$router.push('/')
+                    }
+                )
+            },
             edit (index, item) {
                 if (!this.editing) {
                     this.editing = item
